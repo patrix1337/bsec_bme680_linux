@@ -28,13 +28,13 @@
 /* definitions */
 
 #define DESTZONE "TZ=Europe/Berlin"
-#define temp_offset (5.0f)
+#define temp_offset (0.0f)
 #define sample_rate_mode (BSEC_SAMPLE_RATE_LP)
 
 int g_i2cFid; // I2C Linux device handle
 int i2c_address = BME680_I2C_ADDR_PRIMARY;
-char *filename_state = "bsec_iaq.state";
-char *filename_config = "bsec_iaq.config";
+char *filename_state = "/data/sensor/bsec_iaq.state";
+char *filename_config = "/data/sensor/bsec_iaq.config";
 
 /* functions */
 
