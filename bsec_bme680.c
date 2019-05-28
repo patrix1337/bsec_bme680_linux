@@ -183,7 +183,9 @@ int64_t get_timestamp_us()
  void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy,
                    float temperature, float humidity, float pressure,
                    float raw_temperature, float raw_humidity, float gas,
-                   bsec_library_return_t bsec_status)
+                   bsec_library_return_t bsec_status,
+                   float static_iaq, float co2_equivalent,
+                   float breath_voc_equivalent)
  {
 
    time_t t = time(NULL);
@@ -198,6 +200,8 @@ int64_t get_timestamp_us()
          raw_humidity);
    printf("\"temperature\":%.2f, \"humidity\":%.2f,", temperature, humidity);
    printf(" \"pressure\":%.2f,", pressure / 100);
+   printf(" \"eco2_ppm\":%.15f,", co2_equivalent);
+   printf(" \"bvoce_ppm\":%.25f,", breath_voc_equivalent);
    printf("\"gas_pressure\":%.0f, \"bsec_status\":%d }", gas, bsec_status);
    printf("\r\n");
    fflush(stdout);
