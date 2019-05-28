@@ -9,15 +9,6 @@ if [ ! -d "${BSEC_DIR}" ]; then
   exit 1
 fi
 
-if [ ! -d "${CONFIG_DIR}" ]; then
-  mkdir "${CONFIG_DIR}"
-fi
-
-STATEFILE="${CONFIG_DIR}/bsec_iaq.state"
-if [ ! -f "${STATEFILE}" ]; then
-  touch "${STATEFILE}"
-fi
-
 echo 'Patching...'
 dir="${BSEC_DIR}/examples"
 patch='patches/eCO2+bVOCe.diff'
@@ -45,4 +36,3 @@ echo 'Compiled.'
 
 cp "${BSEC_DIR}"/config/"${CONFIG}"/bsec_iaq.config "${CONFIG_DIR}"/
 echo 'Copied config.'
-
