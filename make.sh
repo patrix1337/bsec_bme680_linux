@@ -33,3 +33,6 @@ cc -Wall -Wno-unused-but-set-variable -Wno-unused-variable -static \
   -lm -lrt \
   -o bsec_bme680
 echo 'Compiled.'
+
+cp "${BSEC_DIR}"/config/"${CONFIG}"/bsec_iaq.config ./	
+echo 'Copied config.'
