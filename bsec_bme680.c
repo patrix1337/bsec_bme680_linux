@@ -33,6 +33,7 @@
 
 int g_i2cFid; // I2C Linux device handle
 int i2c_address = BME680_I2C_ADDR_PRIMARY;
+int i2c_address_secondary = BME680_I2C_ADDR_SECONDARY;
 char *filename_state = "/data/sensor/bsec_iaq.state";
 char *filename_config = "/data/sensor/bsec_iaq.config";
 
@@ -313,12 +314,25 @@ uint32_t config_load(uint8_t *config_buffer, uint32_t n_buffer)
  *
  * return      result of the processing
  */
-int main()
+int main(int argc, char* argv[])
 {
   putenv(DESTZONE); // Switch to destination time zone
 
   i2cOpen();
-  i2cSetAddress(i2c_address);
+  if( argc == 2 )
+  {
+    int cmp = strcmp( argv[1], "secondary");
+
+    if(cmp == 0)
+    {
+      i2cSetAddress(i2c_address_secondary);
+    } else {
+      perror("Invalid argument");
+      exit(1);
+    }
+  } else {
+    i2cSetAddress(i2c_address);
+  }
 
   return_values_init ret;
 
